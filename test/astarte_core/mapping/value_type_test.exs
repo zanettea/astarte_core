@@ -62,7 +62,7 @@ defmodule Astarte.Core.Mapping.ValueTypeTest do
 
     longbin =
       Stream.cycle([<<42>>])
-      |> Enum.take(65537)
+      |> Enum.take(524_289)
       |> IO.iodata_to_binary()
 
     assert ValueType.validate_value(:binaryblob, {0, longbin}) ==
