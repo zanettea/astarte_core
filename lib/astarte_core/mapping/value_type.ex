@@ -52,9 +52,9 @@ defmodule Astarte.Core.Mapping.ValueType do
 
   # The following limits are really conservative,
   # it is always easier to increase them in future releases
-  @blob_size 65536
+  @blob_size 524_288
   @list_len 1024
-  @string_size 65536
+  @string_size 524_288
 
   @impl true
   def type, do: :integer
