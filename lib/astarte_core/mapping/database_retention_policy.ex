@@ -21,9 +21,11 @@ defmodule Astarte.Core.Mapping.DatabaseRetentionPolicy do
 
   @mapping_policy_no_ttl 1
   @mapping_policy_use_ttl 2
+  @mapping_policy_volatile 3
   @valid_atoms [
     :no_ttl,
-    :use_ttl
+    :use_ttl,
+    :volatile
   ]
 
   @impl true
@@ -44,6 +46,7 @@ defmodule Astarte.Core.Mapping.DatabaseRetentionPolicy do
     case string do
       "no_ttl" -> {:ok, :no_ttl}
       "use_ttl" -> {:ok, :use_ttl}
+      "volatile" -> {:ok, :volatile}
       _ -> :error
     end
   end
@@ -55,6 +58,7 @@ defmodule Astarte.Core.Mapping.DatabaseRetentionPolicy do
     case policy do
       :no_ttl -> {:ok, @mapping_policy_no_ttl}
       :use_ttl -> {:ok, @mapping_policy_use_ttl}
+      :volatile -> {:ok, @mapping_policy_volatile}
       _ -> :error
     end
   end
@@ -75,6 +79,7 @@ defmodule Astarte.Core.Mapping.DatabaseRetentionPolicy do
     case policy_int do
       @mapping_policy_no_ttl -> {:ok, :no_ttl}
       @mapping_policy_use_ttl -> {:ok, :use_ttl}
+      @mapping_policy_volatile -> {:ok, :volatile}
       _ -> :error
     end
   end

@@ -38,9 +38,9 @@
         },
         "database_retention_policy": {
             "type": "string",
-            "enum": ["no_ttl", "use_ttl"],
+            "enum": ["no_ttl", "use_ttl", "volatile"],
             "default": "no_ttl",
-            "description": "Useful only with datastream. Defines whether data should expire from the database after a given interval. Valid values are: no_ttl and use_ttl."
+            "description": "Useful only with datastream. Defines whether data should expire from the database after a given interval. If volatile is set data is not persisted at all in the database. Valid values are: no_ttl, use_ttl and volatile."
         },
         "database_retention_ttl": {
             "type": "integer",
