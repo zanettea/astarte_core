@@ -48,7 +48,7 @@
             "description": "Mappings define the endpoint of the interface, where actual data is stored/streamed. They are defined as relative URLs (e.g. /my/path) and can be parametrized (e.g.: /%{myparam}/path). A valid interface must have no mappings clash, which means that every mapping must resolve to a unique path or collection of paths (including parametrization). Every mapping acquires type, quality and aggregation of the interface.",
             "items": {"$ref": "mapping.json"},
             "minItems": 1,
-            "maxItems": 1024,
+            "maxItems": 10000,
             "uniqueItems": true
         }
     },
