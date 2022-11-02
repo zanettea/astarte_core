@@ -61,7 +61,7 @@ defmodule Astarte.Core.CQLUtils do
   def endpoint_to_db_column_name(endpoint_name) when is_binary(endpoint_name) do
     long_column_name_suffix =
       endpoint_name
-      |> String.split("/")
+      |> String.split( if endpoint_name |> String.contains?("%{"), do: "}/", else: "/" )
       |> List.last()
       |> String.downcase()
 

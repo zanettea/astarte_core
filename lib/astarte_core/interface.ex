@@ -254,12 +254,19 @@ defmodule Astarte.Core.Interface do
     mappings = get_field(changeset, :mappings, [])
     aggregation = get_field(changeset, :aggregation, [])
 
+    # EXOR: common prefixes when using placeholders are computed w.r.t. the last placeholder
+    # of the first entry, otherwise are computed on the last-1 part (split on /)
+
     if aggregation == :object and mappings != [] do
+      separator = mappings
+        |> List.first()
+        |> (fn (x) -> if String.contains?(x, "%{") , do: "}/", else: "/" end).()
+
       common_prefix =
         mappings
         |> List.first()
         |> Map.get(:endpoint)
-        |> String.split("/")
+        |> String.split( separator )
         |> List.delete_at(-1)
 
       all_same_prefix =
@@ -267,7 +274,7 @@ defmodule Astarte.Core.Interface do
           current_prefix =
             mapping
             |> Map.get(:endpoint)
-            |> String.split("/")
+            |> String.split( separator )
             |> List.delete_at(-1)
 
           current_prefix == common_prefix
